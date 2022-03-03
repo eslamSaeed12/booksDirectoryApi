@@ -1,0 +1,8 @@
+# dirs
+/node_modules
+/coverage
+/build
+
+# files
+*env
+package-lock.json

@@ -1,0 +1,7 @@
+{
+  "restartable": "rs",
+  "ignore": [".git", "node_modules/", "build/", "coverage/", "test/"],
+  "watch": ["./src"],
+  "exec": "node --experimental-vm-modules",
+  "ext": "js,json"
+}
