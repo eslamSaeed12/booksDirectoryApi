@@ -14,7 +14,8 @@
     "dev": "nodemon --config nodemon.json src/app.js",
     "db:seed": "knex seed:run",
     "db:migrate": "knex migrate:latest",
-    "db:rollback": "knex migrate:rollback --all"
+    "db:rollback": "knex migrate:rollback --all",
+    "db:build": "npm run db:rollback && npm run db:migrate && npm run db:seed"
   },
   "keywords": [],
   "author": "",
@@ -38,7 +39,9 @@
     "knex": "^1.0.3",
     "morgan": "^1.10.0",
     "pg": "^8.7.3",
-    "supertest": "^6.2.2"
+    "supertest": "^6.2.2",
+    "swagger-jsdoc": "^6.1.0",
+    "swagger-ui-express": "^4.3.0"
   },
   "devDependencies": {
     "chance": "^1.1.8",

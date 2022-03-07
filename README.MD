@@ -47,13 +47,13 @@
  - fill enviroment variables
  - open the terminal
  - run npm test -> for testing repoistory
- - run npm build -> for build the repository with babel cli
+ - run npm db:build -> for building database
  - run npm dev -> for using development mode
  - run npm start -> for using production mode
 
 ## Docuemntion
 
-<p> for full documention <a href=''>click here</a> </p>
+<p> install the application then open the browser and go to <b>/docs</b></p>
 
 ## Licence
 

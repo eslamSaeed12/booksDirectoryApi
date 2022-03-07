@@ -9,14 +9,14 @@ import cors from "cors";
 import timeout from "connect-timeout";
 import limiter from "express-rate-limit";
 import csurf from "csurf";
-import booksController from "./controllers/Books.js";
-import authController from "./controllers/Auth.js";
-import { authenticatedRoute } from "./middlewares/Auth.js";
 import { serverError } from "./middlewares/ServerErrror.js";
 import { NotFoundRoute } from "./middlewares/NotFoundRoute.js";
-import { booksValidators } from "./validations/books.validation.js";
-import { authValidators } from "./validations/auth.validation.js";
-import { validationCatcher } from "./middlewares/validationMd.js";
+import swagger from "swagger-ui-express";
+import jsdoc from "swagger-jsdoc";
+import { openApiOpts } from "../documention.js";
+import * as authRoutes from "./routes/auth.js";
+import * as booksRoutes from "./routes/books.js";
+const jsDocConf = jsdoc(openApiOpts);
 // global varaibles
 
 const isDev = env("NODE_ENV") === "development";
@@ -58,47 +58,16 @@ app.use(
   })
 );
 
-// assign routes
+app.use("/api", authRoutes.router);
+app.use("/api", booksRoutes.router);
 
-// books routes
-app.get("/api/books", booksController.find);
-app.get(
-  "/api/books/:id",
-  booksValidators.findById,
-  validationCatcher,
-  booksController.findById
+app.use(
+  "/docs",
+  swagger.serve,
+  swagger.setup(jsDocConf, {
+    customSiteTitle: "books dir docs",
+  })
 );
-app.post(
-  "/api/books",
-  authenticatedRoute,
-  booksValidators.create,
-  validationCatcher,
-  booksController.insert
-);
-app.put(
-  "/api/books/:id",
-  authenticatedRoute,
-  booksValidators.update,
-  validationCatcher,
-  booksController.update
-);
-app.delete(
-  "/api/books/:id",
-  authenticatedRoute,
-  booksValidators.delete_,
-  validationCatcher,
-  booksController.delete
-);
-
-// auth routes
-app.post(
-  "/api/auth/login",
-  authValidators.authenticate,
-  validationCatcher,
-  authController.login
-);
-
-app.get("/api/auth/csrf", authController.request);
 
 // error handlers
 app.use(NotFoundRoute);
