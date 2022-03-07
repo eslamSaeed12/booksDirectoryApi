@@ -25,7 +25,9 @@ export const openApiOpts = {
         scucess: {
           type: "object",
           properties: {
-            message: "success",
+            message: {
+              type: "string",
+            },
           },
         },
 
@@ -90,7 +92,8 @@ export const openApiOpts = {
               type: "string",
             },
             realase_year: {
-              type: "date",
+              type: "string",
+              format: "date",
             },
           },
         },
@@ -107,7 +110,8 @@ export const openApiOpts = {
               type: "string",
             },
             realase_year: {
-              type: "date",
+              type: "string",
+              format: "date",
             },
           },
         },
@@ -115,7 +119,7 @@ export const openApiOpts = {
     },
     paths: {
       //csrf
-      "api/auth/csrf": {
+      "/api/auth/csrf": {
         get: {
           tags: ["Csrf-token"],
           summary: "getting csrf token",
@@ -139,7 +143,7 @@ export const openApiOpts = {
         },
       },
       // auth login
-      "api/auth/login": {
+      "/api/auth/login": {
         post: {
           tags: ["Login"],
           summary: "Authenticate a user cerdentials",
@@ -253,7 +257,7 @@ export const openApiOpts = {
                 "application/json": {
                   schema: {
                     type: "object",
-                    $ref: "#/components/schemas/success",
+                    $ref: "#/components/schemas/scucess",
                   },
                 },
               },
@@ -421,7 +425,7 @@ export const openApiOpts = {
                 "application/json": {
                   schema: {
                     type: "object",
-                    $ref: "#/components/schemas/success",
+                    $ref: "#/components/schemas/scucess",
                   },
                 },
               },

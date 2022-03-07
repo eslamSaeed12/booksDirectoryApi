@@ -16,9 +16,10 @@ import jsdoc from "swagger-jsdoc";
 import { openApiOpts } from "../documention.js";
 import * as authRoutes from "./routes/auth.js";
 import * as booksRoutes from "./routes/books.js";
-const jsDocConf = jsdoc(openApiOpts);
+
 // global varaibles
 
+const jsDocConf = jsdoc(openApiOpts);
 const isDev = env("NODE_ENV") === "development";
 
 // constructing expresss instance
